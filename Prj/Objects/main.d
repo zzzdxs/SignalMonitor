@@ -38,3 +38,4 @@
 .\objects\main.o: ..\usr\./led/bsp_led.h
 .\objects\main.o: ..\usr\./usart/bsp_debug_usart.h
 .\objects\main.o: ..\usr\./dwt_delay/core_delay.h
+.\objects\main.o: ..\usr\./ADC/bsp_adc.h

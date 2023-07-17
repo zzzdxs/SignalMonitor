@@ -18,7 +18,8 @@
                 "d:\\STM32\\00SMC\\usr\\led",
                 "d:\\STM32\\00SMC\\usr\\usart",
                 "d:\\STM32\\00SMC\\usr\\dwt_delay",
-                "d:\\STM32\\00SMC\\usr\\HTTP"
+                "d:\\STM32\\00SMC\\usr\\HTTP",
+                "d:\\STM32\\00SMC\\usr\\ADC"
             ],
             "defines": [
                 "USE_STDPERIPH_DRIVER",

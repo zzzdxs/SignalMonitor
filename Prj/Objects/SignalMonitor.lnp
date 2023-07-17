@@ -53,7 +53,8 @@
 ".\objects\bsp_debug_usart.o"
 ".\objects\core_delay.o"
 ".\objects\bsp_http.o"
---strict --scatter ".\Objects\SignalMonitor.sct"
+".\objects\bsp_adc.o"
+--library_type=microlib --strict --scatter ".\Objects\SignalMonitor.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\SignalMonitor.map" -o .\Objects\SignalMonitor.axf

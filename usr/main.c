@@ -6,6 +6,7 @@
 //#include "./ESP8266/bsp_esp8266.h"
 //#include "./ESP8266/bsp_esp8266_test.h"
 #include "./dwt_delay/core_delay.h"
+#include "./ADC/bsp_adc.h"
 
 
 int main(void)
@@ -19,6 +20,12 @@ int main(void)
 	CPU_TS_Tmr_Delay_S(2);
 	LED1_OFF;
 	Usart_SendString(DEBUG_USART,"DEBUG_USART TEST\n");
+	printf("test\n");
+
+	Rheostat_Init();
+
+
+
 	while(1);
 
 }
