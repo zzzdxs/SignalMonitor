@@ -7,6 +7,8 @@
 //#include "./ESP8266/bsp_esp8266_test.h"
 #include "./dwt_delay/core_delay.h"
 #include "./ADC/bsp_adc.h"
+#include "./cJSON/cJSON.h"
+#include <stdlib.h>
 
 extern __IO uint16_t ADC_ConvertedValue;
 
@@ -25,6 +27,7 @@ int main(void)
 	Rheostat_Init();
 
 	float ADC_value=(float) ADC_ConvertedValue;
+	printf("%f\n",ADC_value);
 
 
 
