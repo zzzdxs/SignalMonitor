@@ -8,6 +8,7 @@
 #include "./dwt_delay/core_delay.h"
 #include "./ADC/bsp_adc.h"
 
+extern __IO uint16_t ADC_ConvertedValue;
 
 int main(void)
 {
@@ -19,10 +20,11 @@ int main(void)
 	LED1_ON;
 	CPU_TS_Tmr_Delay_S(2);
 	LED1_OFF;
-	Usart_SendString(DEBUG_USART,"DEBUG_USART TEST\n");
-	printf("test\n");
+	Usart_SendString(DEBUG_USART,"DEBUG_USART START\n");
 
 	Rheostat_Init();
+
+	float ADC_value=(float) ADC_ConvertedValue;
 
 
 
