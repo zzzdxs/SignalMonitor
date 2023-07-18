@@ -35,11 +35,11 @@
 .\objects\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\objects\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\main.o: ..\usr\./led/bsp_led.h
 .\objects\main.o: ..\usr\./usart/bsp_debug_usart.h
 .\objects\main.o: ..\usr\./dwt_delay/core_delay.h
 .\objects\main.o: ..\usr\./ADC/bsp_adc.h
 .\objects\main.o: ..\usr\./cJSON/bsp_json.h
 .\objects\main.o: ..\usr\./cJSON/cJSON.h
-.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\main.o: ..\usr\./cJSON/test.h
