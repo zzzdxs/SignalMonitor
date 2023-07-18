@@ -674,6 +674,11 @@
               <FileType>1</FileType>
               <FilePath>..\usr\ADC\bsp_adc.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\usr\cJSON\bsp_json.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
