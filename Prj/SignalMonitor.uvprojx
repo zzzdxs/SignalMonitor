@@ -679,6 +679,11 @@
               <FileType>1</FileType>
               <FilePath>..\usr\cJSON\bsp_json.c</FilePath>
             </File>
+            <File>
+              <FileName>test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\usr\cJSON\test.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
