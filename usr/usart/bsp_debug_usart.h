@@ -4,6 +4,7 @@
 #include "stm32f4xx.h"
 #include <stdio.h>
 
+#define RX_BUF_MAX_LEN 1024
 
 
 //ТэЅЕ¶ЁТе

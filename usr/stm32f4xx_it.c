@@ -31,6 +31,8 @@
 #include <stdio.h>
 #include "stm32f4xx_it.h"
 #include "./usart/bsp_debug_usart.h"
+#include "./cJSON/bsp_json.h"
+
 
 /** @addtogroup STM32F429I_DISCOVERY_Examples
   * @{
@@ -149,14 +151,23 @@ void SysTick_Handler(void)
 
 /**
   * @}
-   */
+ */
+
+char Data_RX[RX_BUF_MAX_LEN];
 void DEBUG_USART_IRQHandler()
 {
-  uint8_t ucCh;
-	if ( USART_GetITStatus ( DEBUG_USART, USART_IT_RXNE ) != RESET )  //数据接收寄存器非空中断
+	u8 ucCh;
+  int len_rec=0;
+  if ( USART_GetITStatus ( DEBUG_USART, USART_IT_RXNE ) != RESET )  //数据接收寄存器非空中断
 	{
 		ucCh  = USART_ReceiveData( DEBUG_USART );
+
+    if(len_rec<(RX_BUF_MAX_LEN-1))
+    {
+      Data_RX[len_rec++]=ucCh;
+    }
     USART_SendData(DEBUG_USART,ucCh);
+    //JSONRecv((char *)ucCh);
 	}
 	 	 
 }

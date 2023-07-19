@@ -2,32 +2,39 @@
 
 void JSONPack(float number)
 {
-    uint8_t ucTemp;
+    static uint8_t ucTemp;
     cJSON * usr;
     char * data;
-    double nnumber=1.234;
+    int nnumber=1;
     ucTemp=ucTemp+1;
     if(ucTemp>100)
     {
         ucTemp=0;
     }
-    
+    //free(data);free(usr);
     usr=cJSON_CreateObject();
+    
     cJSON_AddItemToObject(usr,"A",cJSON_CreateNumber(ucTemp));
-    cJSON_AddItemToObject(usr,"����",cJSON_CreateNumber(number));
-    cJSON_AddItemToObject(usr,"name",cJSON_CreateString("ok"));
-    cJSON_AddItemToObject(usr,"1234",cJSON_CreateNumber(nnumber));
+    cJSON_AddItemToObject(usr,"模拟信号",cJSON_CreateNumber(number));
+    cJSON_AddItemToObject(usr,"数字信号",cJSON_CreateNumber(nnumber));
     data=cJSON_Print(usr);
-    printf("%s",data);
+    printf("发送json信息:\n %s",data);
 
     cJSON_Delete(usr);
     free(data);
-
+	data=NULL;
 }
 
 
-void JSONRecv(void)
+void JSONRecv(char * recv)
 {
-    printf("test\n");
+    cJSON * json, * json1, * json2, * json3;
+    json=cJSON_Parse(recv);
+    json1=cJSON_GetObjectItem(json,"A");
+    json2=cJSON_GetObjectItem(json,"模拟信号");
+    json3=cJSON_GetObjectItem(json,"数字信号");
+    printf("接收json信息:\n A:%s \n 模拟信号:%f \n 数字信号:%d \n",json1->valuestring,json2->valuedouble,json3->valueint);
+
+    cJSON_Delete(json);
 }
 

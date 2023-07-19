@@ -37,3 +37,6 @@
 .\objects\stm32f4xx_it.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\objects\stm32f4xx_it.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\objects\stm32f4xx_it.o: ..\usr\./usart/bsp_debug_usart.h
+.\objects\stm32f4xx_it.o: ..\usr\./cJSON/bsp_json.h
+.\objects\stm32f4xx_it.o: ..\usr\./cJSON/cJSON.h
+.\objects\stm32f4xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
