@@ -4,13 +4,13 @@
   * @author  fire
   * @version V1.0
   * @date    2015-xx-xx
-  * @brief   ledÓ¦ÓÃº¯Êı½Ó¿Ú
+  * @brief   ledåº”ç”¨å‡½æ•°æ¥å£
   ******************************************************************************
   * @attention
   *
-  * ÊµÑéÆ½Ì¨:Ò°»ğ  STM32 F407 ¿ª·¢°å  
-  * ÂÛÌ³    :http://www.firebbs.cn
-  * ÌÔ±¦    :https://fire-stm32.taobao.com
+  * å®éªŒå¹³å°:é‡ç«  STM32 F407 å¼€å‘æ¿  
+  * è®ºå›    :http://www.firebbs.cn
+  * æ·˜å®    :https://fire-stm32.taobao.com
   *
   ******************************************************************************
   */
@@ -18,47 +18,47 @@
 #include "./led/bsp_led.h"   
 
  /**
-  * @brief  ³õÊ¼»¯¿ØÖÆLEDµÄIO
-  * @param  ÎŞ
-  * @retval ÎŞ
+  * @brief  åˆå§‹åŒ–æ§åˆ¶LEDçš„IO
+  * @param  æ— 
+  * @retval æ— 
   */
 void LED_GPIO_Config(void)
 {		
-		/*¶¨ÒåÒ»¸öGPIO_InitTypeDefÀàĞÍµÄ½á¹¹Ìå*/
+		/*å®šä¹‰ä¸€ä¸ªGPIO_InitTypeDefç±»å‹çš„ç»“æ„ä½“*/
 		GPIO_InitTypeDef GPIO_InitStructure;
 
-		/*¿ªÆôLEDÏà¹ØµÄGPIOÍâÉèÊ±ÖÓ*/
+		/*å¼€å¯LEDç›¸å…³çš„GPIOå¤–è®¾æ—¶é’Ÿ*/
 		RCC_AHB1PeriphClockCmd ( LED1_GPIO_CLK|
 	                           LED2_GPIO_CLK|
 	                           LED3_GPIO_CLK, ENABLE); 
 
-		/*Ñ¡ÔñÒª¿ØÖÆµÄGPIOÒı½Å*/															   
+		/*é€‰æ‹©è¦æ§åˆ¶çš„GPIOå¼•è„š*/															   
 		GPIO_InitStructure.GPIO_Pin = LED1_PIN;	
 
-		/*ÉèÖÃÒı½ÅÄ£Ê½ÎªÊä³öÄ£Ê½*/
+		/*è®¾ç½®å¼•è„šæ¨¡å¼ä¸ºè¾“å‡ºæ¨¡å¼*/
 		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;   
     
-    /*ÉèÖÃÒı½ÅµÄÊä³öÀàĞÍÎªÍÆÍìÊä³ö*/
+    /*è®¾ç½®å¼•è„šçš„è¾“å‡ºç±»å‹ä¸ºæ¨æŒ½è¾“å‡º*/
     GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
     
-    /*ÉèÖÃÒı½ÅÎªÉÏÀ­Ä£Ê½*/
+    /*è®¾ç½®å¼•è„šä¸ºä¸Šæ‹‰æ¨¡å¼*/
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
 
-		/*ÉèÖÃÒı½ÅËÙÂÊÎª2MHz */   
+		/*è®¾ç½®å¼•è„šé€Ÿç‡ä¸º2MHz */   
 		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz; 
 
-		/*µ÷ÓÃ¿âº¯Êı£¬Ê¹ÓÃÉÏÃæÅäÖÃµÄGPIO_InitStructure³õÊ¼»¯GPIO*/
+		/*è°ƒç”¨åº“å‡½æ•°ï¼Œä½¿ç”¨ä¸Šé¢é…ç½®çš„GPIO_InitStructureåˆå§‹åŒ–GPIO*/
 		GPIO_Init(LED1_GPIO_PORT, &GPIO_InitStructure);	
     
-    /*Ñ¡ÔñÒª¿ØÖÆµÄGPIOÒı½Å*/															   
+    /*é€‰æ‹©è¦æ§åˆ¶çš„GPIOå¼•è„š*/															   
 		GPIO_InitStructure.GPIO_Pin = LED2_PIN;	
     GPIO_Init(LED2_GPIO_PORT, &GPIO_InitStructure);	
     
-    /*Ñ¡ÔñÒª¿ØÖÆµÄGPIOÒı½Å*/															   
+    /*é€‰æ‹©è¦æ§åˆ¶çš„GPIOå¼•è„š*/															   
 		GPIO_InitStructure.GPIO_Pin = LED3_PIN;	
     GPIO_Init(LED3_GPIO_PORT, &GPIO_InitStructure);	
 		
-		/*¹Ø±ÕRGBµÆ*/
+		/*å…³é—­RGBç¯*/
 		LED_RGBOFF;		
 }
 /*********************************************END OF FILE**********************/

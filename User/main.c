@@ -12,17 +12,17 @@
 extern __IO uint16_t ADC_ConvertedValue;
 extern char Data_RX[RX_BUF_MAX_LEN];
 /**
-  * @brief  Ö÷º¯Êı
-  * @param  ÎŞ
-  * @retval ÎŞ
+  * @brief  ä¸»å‡½æ•°
+  * @param  æ— 
+  * @retval æ— 
   */
 int main(void)
 {	
-  /* ³õÊ¼»¯ */
+  /* åˆå§‹åŒ– */
 	float ADC_value;
-  Debug_USART_Config ();                                                //³õÊ¼»¯USART ÅäÖÃÄ£Ê½Îª 115200 8-N-1£¬ÖĞ¶Ï½ÓÊÕ
-  CPU_TS_TmrInit();                                                     //³õÊ¼»¯DWT¼ÆÊıÆ÷ ÑÓÊ±º¯ÊıÓÃµ½
-	ESP8266_Init ();  	//³õÊ¼»¯WiFiÄ£¿éÊ¹ÓÃµÄ½Ó¿ÚºÍÍâÉè
+  Debug_USART_Config ();                                                //åˆå§‹åŒ–USART é…ç½®æ¨¡å¼ä¸º 115200 8-N-1ï¼Œä¸­æ–­æ¥æ”¶
+  CPU_TS_TmrInit();                                                     //åˆå§‹åŒ–DWTè®¡æ•°å™¨ å»¶æ—¶å‡½æ•°ç”¨åˆ°
+	ESP8266_Init ();  	//åˆå§‹åŒ–WiFiæ¨¡å—ä½¿ç”¨çš„æ¥å£å’Œå¤–è®¾
 	LED_GPIO_Config();
 	Rheostat_Init();
 	
@@ -31,29 +31,29 @@ int main(void)
 	CPU_TS_Tmr_Delay_S(1);
 	
 	/*
-	printf("»¶Ó­Ê¹ÓÃÒ°»ğSTM32¿ª·¢°å\n\n");
-	printf("ÕâÊÇÒ»¸öESP8266ATÖ¸Áî²âÊÔÊµÑé\n\n");
-	printf("ÇëÊ¹ÓÃ´®¿Úµ÷ÊÔÖúÊÖ·¢ËÍ\"AT+»»ĞĞ»Ø³µ\"²âÊÔESP8266ÊÇ·ñ×¼±¸ºÃ\n\n");
-	printf("¸ü¶àATÖ¸ÁîÇë²Î¿¼Ä£¿é×ÊÁÏ\n\n");
-	printf("ÒÔÏÂÊÇESP8266ÉÏµç³õÊ¼»¯´òÓ¡µÄĞÅÏ¢\n\n");
+	printf("æ¬¢è¿ä½¿ç”¨é‡ç«STM32å¼€å‘æ¿\n\n");
+	printf("è¿™æ˜¯ä¸€ä¸ªESP8266ATæŒ‡ä»¤æµ‹è¯•å®éªŒ\n\n");
+	printf("è¯·ä½¿ç”¨ä¸²å£è°ƒè¯•åŠ©æ‰‹å‘é€\"AT+æ¢è¡Œå›è½¦\"æµ‹è¯•ESP8266æ˜¯å¦å‡†å¤‡å¥½\n\n");
+	printf("æ›´å¤šATæŒ‡ä»¤è¯·å‚è€ƒæ¨¡å—èµ„æ–™\n\n");
+	printf("ä»¥ä¸‹æ˜¯ESP8266ä¸Šç”µåˆå§‹åŒ–æ‰“å°çš„ä¿¡æ¯\n\n");
   */
-  //macESP8266_CH_ENABLE();     //¼ÇµÃÒ»¶¨ÒªÏÈÊ¹ÄÜ
+  //macESP8266_CH_ENABLE();     //è®°å¾—ä¸€å®šè¦å…ˆä½¿èƒ½
   ESP8266_StaTcpClient_Unvarnish_ConfigTest();
   while(1)
 	{	
-		if(strUSART_Fram_Record .InfBit .FramFinishFlag == 1)  //Èç¹û½ÓÊÕµ½ÁË´®¿Úµ÷ÊÔÖúÊÖµÄÊı¾İ
+		if(strUSART_Fram_Record .InfBit .FramFinishFlag == 1)  //å¦‚æœæ¥æ”¶åˆ°äº†ä¸²å£è°ƒè¯•åŠ©æ‰‹çš„æ•°æ®
 		{
 			strUSART_Fram_Record .Data_RX_BUF[strUSART_Fram_Record .InfBit .FramLength] = '\0';
-			Usart_SendString(macESP8266_USARTx ,strUSART_Fram_Record .Data_RX_BUF);      //Êı¾İ´Ó´®¿Úµ÷ÊÔÖúÊÖ×ª·¢µ½ESP8266
-			strUSART_Fram_Record .InfBit .FramLength = 0;                                //½ÓÊÕÊı¾İ³¤¶ÈÖÃÁã
-			strUSART_Fram_Record .InfBit .FramFinishFlag = 0;                            //½ÓÊÕ±êÖ¾ÖÃÁã
+			Usart_SendString(macESP8266_USARTx ,strUSART_Fram_Record .Data_RX_BUF);      //æ•°æ®ä»ä¸²å£è°ƒè¯•åŠ©æ‰‹è½¬å‘åˆ°ESP8266
+			strUSART_Fram_Record .InfBit .FramLength = 0;                                //æ¥æ”¶æ•°æ®é•¿åº¦ç½®é›¶
+			strUSART_Fram_Record .InfBit .FramFinishFlag = 0;                            //æ¥æ”¶æ ‡å¿—ç½®é›¶
 	  }
-		if(strEsp8266_Fram_Record .InfBit .FramFinishFlag)                             //Èç¹û½ÓÊÕµ½ÁËESP8266µÄÊı¾İ
+		if(strEsp8266_Fram_Record .InfBit .FramFinishFlag)                             //å¦‚æœæ¥æ”¶åˆ°äº†ESP8266çš„æ•°æ®
 		{                                                      
 			 strEsp8266_Fram_Record .Data_RX_BUF[strEsp8266_Fram_Record .InfBit .FramLength] = '\0';
-			 Usart_SendString(DEBUG_USART ,strEsp8266_Fram_Record .Data_RX_BUF);        //Êı¾İ´ÓESP8266×ª·¢µ½´®¿Úµ÷ÊÔÖúÊÖ
-			 strEsp8266_Fram_Record .InfBit .FramLength = 0;                             //½ÓÊÕÊı¾İ³¤¶ÈÖÃÁã
-			 strEsp8266_Fram_Record.InfBit.FramFinishFlag = 0;                           //½ÓÊÕ±êÖ¾ÖÃÁã
+			 Usart_SendString(DEBUG_USART ,strEsp8266_Fram_Record .Data_RX_BUF);        //æ•°æ®ä»ESP8266è½¬å‘åˆ°ä¸²å£è°ƒè¯•åŠ©æ‰‹
+			 strEsp8266_Fram_Record .InfBit .FramLength = 0;                             //æ¥æ”¶æ•°æ®é•¿åº¦ç½®é›¶
+			 strEsp8266_Fram_Record.InfBit.FramFinishFlag = 0;                           //æ¥æ”¶æ ‡å¿—ç½®é›¶
 		}
   }	
 

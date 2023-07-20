@@ -4,13 +4,13 @@
   * @author  fire
   * @version V1.0
   * @date    2013-xx-xx
-  * @brief   adc1 Ó¦ÓÃbsp / DMA Ä£Ê½
+  * @brief   adc1 åº”ç”¨bsp / DMA æ¨¡å¼
   ******************************************************************************
   * @attention
   *
-  * ÊµÑéÆ½Ì¨:Ò°»ğ  STM32 F407 ¿ª·¢°å   
-  * ÂÛÌ³    :http://www.firebbs.cn
-  * ÌÔ±¦    :https://fire-stm32.taobao.com
+  * å®éªŒå¹³å°:é‡ç«  STM32 F407 å¼€å‘æ¿   
+  * è®ºå›    :http://www.firebbs.cn
+  * æ·˜å®    :https://fire-stm32.taobao.com
   *
   ******************************************************************************
   */ 
@@ -22,28 +22,28 @@
 __IO uint16_t ADC_ConvertedValue;
 
 /**
-  * @brief  ÅäÖÃADCµÄGPIO
-  * @param  ÎŞ
-  * @retval ÎŞ
+  * @brief  é…ç½®ADCçš„GPIO
+  * @param  æ— 
+  * @retval æ— 
   */
 static void Rheostat_ADC_GPIO_Config(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	
-	// Ê¹ÄÜ GPIO Ê±ÖÓ
+	// ä½¿èƒ½ GPIO æ—¶é’Ÿ
 	RCC_AHB1PeriphClockCmd(RHEOSTAT_ADC_GPIO_CLK, ENABLE);
 		
-	// ÅäÖÃ IO
+	// é…ç½® IO
 	GPIO_InitStructure.GPIO_Pin = RHEOSTAT_ADC_GPIO_PIN;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;	    
-  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ; //²»ÉÏÀ­²»ÏÂÀ­
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ; //ä¸ä¸Šæ‹‰ä¸ä¸‹æ‹‰
 	GPIO_Init(RHEOSTAT_ADC_GPIO_PORT, &GPIO_InitStructure);			
 }
 
 /**
-  * @brief  ÅäÖÃADC£¬DMA´«Êä
-  * @param  ÎŞ
-  * @retval ÎŞ
+  * @brief  é…ç½®ADCï¼ŒDMAä¼ è¾“
+  * @param  æ— 
+  * @retval æ— 
   */
 static void Rheostat_ADC_Mode_Config(void)
 {
@@ -51,92 +51,92 @@ static void Rheostat_ADC_Mode_Config(void)
 	ADC_InitTypeDef ADC_InitStructure;
   ADC_CommonInitTypeDef ADC_CommonInitStructure;
 	
-  // ¿ªÆôADCÊ±ÖÓ
+  // å¼€å¯ADCæ—¶é’Ÿ
 	RCC_APB2PeriphClockCmd(RHEOSTAT_ADC_CLK , ENABLE);
 	
-	// ------------------DMA Init ½á¹¹Ìå²ÎÊı ³õÊ¼»¯--------------------------
-  // ADC1Ê¹ÓÃDMA2£¬Êı¾İÁ÷0£¬Í¨µÀ0£¬Õâ¸öÊÇÊÖ²á¹Ì¶¨ËÀµÄ
-  // ¿ªÆôDMAÊ±ÖÓ
+	// ------------------DMA Init ç»“æ„ä½“å‚æ•° åˆå§‹åŒ–--------------------------
+  // ADC1ä½¿ç”¨DMA2ï¼Œæ•°æ®æµ0ï¼Œé€šé“0ï¼Œè¿™ä¸ªæ˜¯æ‰‹å†Œå›ºå®šæ­»çš„
+  // å¼€å¯DMAæ—¶é’Ÿ
   RCC_AHB1PeriphClockCmd(RHEOSTAT_ADC_DMA_CLK, ENABLE); 
-	// ÍâÉè»ùÖ·Îª£ºADC Êı¾İ¼Ä´æÆ÷µØÖ·
+	// å¤–è®¾åŸºå€ä¸ºï¼šADC æ•°æ®å¯„å­˜å™¨åœ°å€
 	DMA_InitStructure.DMA_PeripheralBaseAddr = RHEOSTAT_ADC_DR_ADDR;	
-  // ´æ´¢Æ÷µØÖ·£¬Êµ¼ÊÉÏ¾ÍÊÇÒ»¸öÄÚ²¿SRAMµÄ±äÁ¿	
+  // å­˜å‚¨å™¨åœ°å€ï¼Œå®é™…ä¸Šå°±æ˜¯ä¸€ä¸ªå†…éƒ¨SRAMçš„å˜é‡	
 	DMA_InitStructure.DMA_Memory0BaseAddr = (u32)&ADC_ConvertedValue;  
-  // Êı¾İ´«Êä·½ÏòÎªÍâÉèµ½´æ´¢Æ÷	
+  // æ•°æ®ä¼ è¾“æ–¹å‘ä¸ºå¤–è®¾åˆ°å­˜å‚¨å™¨	
 	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;	
-	// »º³åÇø´óĞ¡Îª1£¬»º³åÇøµÄ´óĞ¡Ó¦¸ÃµÈÓÚ´æ´¢Æ÷µÄ´óĞ¡
+	// ç¼“å†²åŒºå¤§å°ä¸º1ï¼Œç¼“å†²åŒºçš„å¤§å°åº”è¯¥ç­‰äºå­˜å‚¨å™¨çš„å¤§å°
 	DMA_InitStructure.DMA_BufferSize = 1;	
-	// ÍâÉè¼Ä´æÆ÷Ö»ÓĞÒ»¸ö£¬µØÖ·²»ÓÃµİÔö
+	// å¤–è®¾å¯„å­˜å™¨åªæœ‰ä¸€ä¸ªï¼Œåœ°å€ä¸ç”¨é€’å¢
 	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
-  // ´æ´¢Æ÷µØÖ·¹Ì¶¨
+  // å­˜å‚¨å™¨åœ°å€å›ºå®š
 	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Disable; 
-  // // ÍâÉèÊı¾İ´óĞ¡Îª°ë×Ö£¬¼´Á½¸ö×Ö½Ú 
+  // // å¤–è®¾æ•°æ®å¤§å°ä¸ºåŠå­—ï¼Œå³ä¸¤ä¸ªå­—èŠ‚ 
 	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord; 
-  //	´æ´¢Æ÷Êı¾İ´óĞ¡Ò²Îª°ë×Ö£¬¸úÍâÉèÊı¾İ´óĞ¡ÏàÍ¬
+  //	å­˜å‚¨å™¨æ•°æ®å¤§å°ä¹Ÿä¸ºåŠå­—ï¼Œè·Ÿå¤–è®¾æ•°æ®å¤§å°ç›¸åŒ
 	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;	
-	// Ñ­»·´«ÊäÄ£Ê½
+	// å¾ªç¯ä¼ è¾“æ¨¡å¼
 	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
-  // DMA ´«ÊäÍ¨µÀÓÅÏÈ¼¶Îª¸ß£¬µ±Ê¹ÓÃÒ»¸öDMAÍ¨µÀÊ±£¬ÓÅÏÈ¼¶ÉèÖÃ²»Ó°Ïì
+  // DMA ä¼ è¾“é€šé“ä¼˜å…ˆçº§ä¸ºé«˜ï¼Œå½“ä½¿ç”¨ä¸€ä¸ªDMAé€šé“æ—¶ï¼Œä¼˜å…ˆçº§è®¾ç½®ä¸å½±å“
 	DMA_InitStructure.DMA_Priority = DMA_Priority_High;
-  // ½ûÖ¹DMA FIFO	£¬Ê¹ÓÃÖ±Á¬Ä£Ê½
+  // ç¦æ­¢DMA FIFO	ï¼Œä½¿ç”¨ç›´è¿æ¨¡å¼
   DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;  
-  // FIFO ´óĞ¡£¬FIFOÄ£Ê½½ûÖ¹Ê±£¬Õâ¸ö²»ÓÃÅäÖÃ	
+  // FIFO å¤§å°ï¼ŒFIFOæ¨¡å¼ç¦æ­¢æ—¶ï¼Œè¿™ä¸ªä¸ç”¨é…ç½®	
   DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull;
   DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
   DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;  
-	// Ñ¡Ôñ DMA Í¨µÀ£¬Í¨µÀ´æÔÚÓÚÁ÷ÖĞ
+	// é€‰æ‹© DMA é€šé“ï¼Œé€šé“å­˜åœ¨äºæµä¸­
   DMA_InitStructure.DMA_Channel = RHEOSTAT_ADC_DMA_CHANNEL; 
-  //³õÊ¼»¯DMAÁ÷£¬Á÷Ïàµ±ÓÚÒ»¸ö´óµÄ¹ÜµÀ£¬¹ÜµÀÀïÃæÓĞºÜ¶àÍ¨µÀ
+  //åˆå§‹åŒ–DMAæµï¼Œæµç›¸å½“äºä¸€ä¸ªå¤§çš„ç®¡é“ï¼Œç®¡é“é‡Œé¢æœ‰å¾ˆå¤šé€šé“
 	DMA_Init(RHEOSTAT_ADC_DMA_STREAM, &DMA_InitStructure);
-	// Ê¹ÄÜDMAÁ÷
+	// ä½¿èƒ½DMAæµ
   DMA_Cmd(RHEOSTAT_ADC_DMA_STREAM, ENABLE);
 
-  // -------------------ADC Common ½á¹¹Ìå ²ÎÊı ³õÊ¼»¯------------------------
-	// ¶ÀÁ¢ADCÄ£Ê½
+  // -------------------ADC Common ç»“æ„ä½“ å‚æ•° åˆå§‹åŒ–------------------------
+	// ç‹¬ç«‹ADCæ¨¡å¼
   ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent;
-  // Ê±ÖÓÎªfpclk x·ÖÆµ	
+  // æ—¶é’Ÿä¸ºfpclk xåˆ†é¢‘	
   ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div4;
-  // ½ûÖ¹DMAÖ±½Ó·ÃÎÊÄ£Ê½	
+  // ç¦æ­¢DMAç›´æ¥è®¿é—®æ¨¡å¼	
   ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
-  // ²ÉÑùÊ±¼ä¼ä¸ô	
+  // é‡‡æ ·æ—¶é—´é—´éš”	
   ADC_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;  
   ADC_CommonInit(&ADC_CommonInitStructure);
 	
-  // -------------------ADC Init ½á¹¹Ìå ²ÎÊı ³õÊ¼»¯--------------------------
+  // -------------------ADC Init ç»“æ„ä½“ å‚æ•° åˆå§‹åŒ–--------------------------
 	ADC_StructInit(&ADC_InitStructure);
-  // ADC ·Ö±æÂÊ
+  // ADC åˆ†è¾¨ç‡
   ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;
-  // ½ûÖ¹É¨ÃèÄ£Ê½£¬¶àÍ¨µÀ²É¼¯²ÅĞèÒª	
+  // ç¦æ­¢æ‰«ææ¨¡å¼ï¼Œå¤šé€šé“é‡‡é›†æ‰éœ€è¦	
   ADC_InitStructure.ADC_ScanConvMode = DISABLE; 
-  // Á¬Ğø×ª»»	
+  // è¿ç»­è½¬æ¢	
   ADC_InitStructure.ADC_ContinuousConvMode = ENABLE; 
-  //½ûÖ¹Íâ²¿±ßÑØ´¥·¢
+  //ç¦æ­¢å¤–éƒ¨è¾¹æ²¿è§¦å‘
   ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
-  //Íâ²¿´¥·¢Í¨µÀ£¬±¾Àı×ÓÊ¹ÓÃÈí¼ş´¥·¢£¬´ËÖµËæ±ã¸³Öµ¼´¿É
+  //å¤–éƒ¨è§¦å‘é€šé“ï¼Œæœ¬ä¾‹å­ä½¿ç”¨è½¯ä»¶è§¦å‘ï¼Œæ­¤å€¼éšä¾¿èµ‹å€¼å³å¯
   ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T1_CC1;
-  //Êı¾İÓÒ¶ÔÆë	
+  //æ•°æ®å³å¯¹é½	
   ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
-  //×ª»»Í¨µÀ 1¸ö
+  //è½¬æ¢é€šé“ 1ä¸ª
   ADC_InitStructure.ADC_NbrOfConversion = 1;                                    
   ADC_Init(RHEOSTAT_ADC, &ADC_InitStructure);
   //---------------------------------------------------------------------------
 	
-  // ÅäÖÃ ADC Í¨µÀ×ª»»Ë³ĞòÎª1£¬µÚÒ»¸ö×ª»»£¬²ÉÑùÊ±¼äÎª3¸öÊ±ÖÓÖÜÆÚ
+  // é…ç½® ADC é€šé“è½¬æ¢é¡ºåºä¸º1ï¼Œç¬¬ä¸€ä¸ªè½¬æ¢ï¼Œé‡‡æ ·æ—¶é—´ä¸º3ä¸ªæ—¶é’Ÿå‘¨æœŸ
   ADC_RegularChannelConfig(RHEOSTAT_ADC, RHEOSTAT_ADC_CHANNEL, 1, ADC_SampleTime_3Cycles); 
-  // Ê¹ÄÜDMAÇëÇó after last transfer (Single-ADC mode)
+  // ä½¿èƒ½DMAè¯·æ±‚ after last transfer (Single-ADC mode)
   ADC_DMARequestAfterLastTransferCmd(RHEOSTAT_ADC, ENABLE);
-  // Ê¹ÄÜADC DMA
+  // ä½¿èƒ½ADC DMA
   ADC_DMACmd(RHEOSTAT_ADC, ENABLE);
-  // Ê¹ÄÜADC
+  // ä½¿èƒ½ADC
   ADC_Cmd(RHEOSTAT_ADC, ENABLE);  
-  //¿ªÊ¼adc×ª»»£¬Èí¼ş´¥·¢
+  //å¼€å§‹adcè½¬æ¢ï¼Œè½¯ä»¶è§¦å‘
   ADC_SoftwareStartConv(RHEOSTAT_ADC);
 }
 
 /**
-  * @brief  ADC1³õÊ¼»¯
-  * @param  ÎŞ
-  * @retval ÎŞ
+  * @brief  ADC1åˆå§‹åŒ–
+  * @param  æ— 
+  * @retval æ— 
   */
 void Rheostat_Init(void)
 {
