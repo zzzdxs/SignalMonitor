@@ -36,6 +36,6 @@
 .\objects\bsp_json.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\objects\bsp_json.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\objects\bsp_json.o: ..\usr\cJSON\cJSON.h
-.\objects\bsp_json.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\bsp_json.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\bsp_json.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\bsp_json.o: ..\usr\cJSON\../usart/bsp_debug_usart.h

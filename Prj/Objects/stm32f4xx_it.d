@@ -1,5 +1,6 @@
 .\objects\stm32f4xx_it.o: ..\usr\stm32f4xx_it.c
 .\objects\stm32f4xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\stm32f4xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\stm32f4xx_it.o: ..\usr\stm32f4xx_it.h
 .\objects\stm32f4xx_it.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\stm32f4xx_it.o: ..\Libraries\CMSIS\Include\core_cm4.h
@@ -40,3 +41,7 @@
 .\objects\stm32f4xx_it.o: ..\usr\./cJSON/bsp_json.h
 .\objects\stm32f4xx_it.o: ..\usr\./cJSON/cJSON.h
 .\objects\stm32f4xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\stm32f4xx_it.o: ..\usr\./ESP8266/bsp_esp8266_tcp.h
+.\objects\stm32f4xx_it.o: ..\usr\./ESP8266/bsp_esp8266.h
+.\objects\stm32f4xx_it.o: ..\usr\./common/common.h
+.\objects\stm32f4xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

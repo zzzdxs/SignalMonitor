@@ -48,7 +48,6 @@
 ".\objects\cjson.o"
 ".\objects\common.o"
 ".\objects\bsp_esp8266.o"
-".\objects\bsp_esp8266_test.o"
 ".\objects\bsp_led.o"
 ".\objects\bsp_debug_usart.o"
 ".\objects\core_delay.o"
@@ -56,6 +55,7 @@
 ".\objects\bsp_adc.o"
 ".\objects\bsp_json.o"
 ".\objects\test.o"
+".\objects\bsp_esp8266_tcp.o"
 --library_type=microlib --strict --scatter ".\Objects\SignalMonitor.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

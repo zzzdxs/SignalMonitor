@@ -645,11 +645,6 @@
               <FilePath>..\usr\ESP8266\bsp_esp8266.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_esp8266_test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\usr\ESP8266\bsp_esp8266_test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_led.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\usr\led\bsp_led.c</FilePath>
@@ -683,6 +678,11 @@
               <FileName>test.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\usr\cJSON\test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_esp8266_tcp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\usr\ESP8266\bsp_esp8266_tcp.c</FilePath>
             </File>
           </Files>
         </Group>
