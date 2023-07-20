@@ -1,16 +1,13 @@
 ;******************** (C) COPYRIGHT 2016 STMicroelectronics ********************
-;* File Name          : startup_stm32f40_41xxx.s
+;* File Name          : startup_stm32f469_479xx.s
 ;* Author             : MCD Application Team
 ;* @version           : V1.8.0
 ;* @date              : 09-November-2016
-;* Description        : STM32F40xxx/41xxx devices vector table for MDK-ARM toolchain. 
+;* Description        : STM32F469xx/479xx devices vector table for MDK-ARM toolchain. 
 ;*                      This module performs:
 ;*                      - Set the initial SP
 ;*                      - Set the initial PC == Reset_Handler
 ;*                      - Set the vector table entries with the exceptions ISR address
-;*                      - Configure the system clock and the external SRAM mounted on 
-;*                        STM324xG-EVAL board to be used as data memory (optional, 
-;*                        to be enabled by user)
 ;*                      - Branches to __main in the C library (which eventually
 ;*                        calls main()).
 ;*                      After Reset the CortexM4 processor is in Thread mode,
@@ -132,7 +129,7 @@ __Vectors       DCD     __initial_sp               ; Top of Stack
                 DCD     TIM8_TRG_COM_TIM14_IRQHandler     ; TIM8 Trigger and Commutation and TIM14
                 DCD     TIM8_CC_IRQHandler                ; TIM8 Capture Compare                                   
                 DCD     DMA1_Stream7_IRQHandler           ; DMA1 Stream7                                           
-                DCD     FSMC_IRQHandler                   ; FSMC                                            
+                DCD     FMC_IRQHandler                    ; FMC                                             
                 DCD     SDIO_IRQHandler                   ; SDIO                                            
                 DCD     TIM5_IRQHandler                   ; TIM5                                            
                 DCD     SPI3_IRQHandler                   ; SPI3                                            
@@ -162,11 +159,22 @@ __Vectors       DCD     __initial_sp               ; Top of Stack
                 DCD     OTG_HS_EP1_IN_IRQHandler          ; USB OTG HS End Point 1 In                       
                 DCD     OTG_HS_WKUP_IRQHandler            ; USB OTG HS Wakeup through EXTI                         
                 DCD     OTG_HS_IRQHandler                 ; USB OTG HS                                      
-                DCD     DCMI_IRQHandler                   ; DCMI                                            
-                DCD     CRYP_IRQHandler                   ; CRYP crypto                                     
+                DCD     DCMI_IRQHandler                   ; DCMI  
+                DCD     CRYP_IRQHandler                   ; CRYPTO				                              
                 DCD     HASH_RNG_IRQHandler               ; Hash and Rng
                 DCD     FPU_IRQHandler                    ; FPU
-                                         
+                DCD     UART7_IRQHandler                  ; UART7
+                DCD     UART8_IRQHandler                  ; UART8
+                DCD     SPI4_IRQHandler                   ; SPI4
+                DCD     SPI5_IRQHandler                   ; SPI5
+                DCD     SPI6_IRQHandler                   ; SPI6
+                DCD     SAI1_IRQHandler                   ; SAI1
+                DCD     LTDC_IRQHandler                   ; LTDC
+                DCD     LTDC_ER_IRQHandler                ; LTDC error
+                DCD     DMA2D_IRQHandler                  ; DMA2D
+                DCD     QUADSPI_IRQHandler                ; QUADSPI
+                DCD     DSI_IRQHandler                    ; DSI
+
 __Vectors_End
 
 __Vectors_Size  EQU  __Vectors_End - __Vectors
@@ -279,7 +287,7 @@ Default_Handler PROC
                 EXPORT  TIM8_TRG_COM_TIM14_IRQHandler     [WEAK] 
                 EXPORT  TIM8_CC_IRQHandler                [WEAK]                                   
                 EXPORT  DMA1_Stream7_IRQHandler           [WEAK]                                          
-                EXPORT  FSMC_IRQHandler                   [WEAK]                                             
+                EXPORT  FMC_IRQHandler                    [WEAK]                                             
                 EXPORT  SDIO_IRQHandler                   [WEAK]                                             
                 EXPORT  TIM5_IRQHandler                   [WEAK]                                             
                 EXPORT  SPI3_IRQHandler                   [WEAK]                                             
@@ -309,10 +317,21 @@ Default_Handler PROC
                 EXPORT  OTG_HS_EP1_IN_IRQHandler          [WEAK]                      
                 EXPORT  OTG_HS_WKUP_IRQHandler            [WEAK]                        
                 EXPORT  OTG_HS_IRQHandler                 [WEAK]                                      
-                EXPORT  DCMI_IRQHandler                   [WEAK]                                             
-                EXPORT  CRYP_IRQHandler                   [WEAK]                                     
+                EXPORT  DCMI_IRQHandler                   [WEAK]
+                EXPORT  CRYP_IRQHandler     			  [WEAK]
                 EXPORT  HASH_RNG_IRQHandler               [WEAK]
                 EXPORT  FPU_IRQHandler                    [WEAK]
+                EXPORT  UART7_IRQHandler                  [WEAK]
+                EXPORT  UART8_IRQHandler                  [WEAK]
+                EXPORT  SPI4_IRQHandler                   [WEAK]
+                EXPORT  SPI5_IRQHandler                   [WEAK]
+                EXPORT  SPI6_IRQHandler                   [WEAK]
+                EXPORT  SAI1_IRQHandler                   [WEAK]
+                EXPORT  LTDC_IRQHandler                   [WEAK]
+                EXPORT  LTDC_ER_IRQHandler                [WEAK]
+                EXPORT  DMA2D_IRQHandler                  [WEAK]
+                EXPORT  QUADSPI_IRQHandler                [WEAK]
+                EXPORT  DSI_IRQHandler                    [WEAK]
 
 WWDG_IRQHandler                                                       
 PVD_IRQHandler                                      
@@ -362,7 +381,7 @@ TIM8_UP_TIM13_IRQHandler
 TIM8_TRG_COM_TIM14_IRQHandler  
 TIM8_CC_IRQHandler                                               
 DMA1_Stream7_IRQHandler                                                 
-FSMC_IRQHandler                                                            
+FMC_IRQHandler                                                            
 SDIO_IRQHandler                                                            
 TIM5_IRQHandler                                                            
 SPI3_IRQHandler                                                            
@@ -392,11 +411,21 @@ OTG_HS_EP1_OUT_IRQHandler
 OTG_HS_EP1_IN_IRQHandler                            
 OTG_HS_WKUP_IRQHandler                                
 OTG_HS_IRQHandler                                                   
-DCMI_IRQHandler                                                            
-CRYP_IRQHandler                                                    
+DCMI_IRQHandler 
+CRYP_IRQHandler
 HASH_RNG_IRQHandler
-FPU_IRQHandler
-   
+FPU_IRQHandler  
+UART7_IRQHandler                  
+UART8_IRQHandler                  
+SPI4_IRQHandler                   
+SPI5_IRQHandler                   
+SPI6_IRQHandler                   
+SAI1_IRQHandler                   
+LTDC_IRQHandler                   
+LTDC_ER_IRQHandler                 
+DMA2D_IRQHandler
+QUADSPI_IRQHandler                 
+DSI_IRQHandler                  
                 B       .
 
                 ENDP
