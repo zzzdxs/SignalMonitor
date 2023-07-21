@@ -9,8 +9,10 @@
 #include "./led/bsp_led.h"
 #include "./ADC/bsp_adc.h"
 
+extern char httppack[1024];
 extern __IO uint16_t ADC_ConvertedValue;
 extern char Data_RX[RX_BUF_MAX_LEN];
+
 /**
   * @brief  主函数
   * @param  无
@@ -35,26 +37,15 @@ int main(void)
 	printf("这是一个ESP8266AT指令测试实验\n\n");
 	printf("请使用串口调试助手发送\"AT+换行回车\"测试ESP8266是否准备好\n\n");
 	printf("更多AT指令请参考模块资料\n\n");
-	printf("以下是ESP8266上电初始化打印的信息\n\n");
+	printf("以下是ESP8266上电初始化打印信息\n\n");
   */
   //macESP8266_CH_ENABLE();     //记得一定要先使能
   ESP8266_StaTcpClient_Unvarnish_ConfigTest();
+  printf("HTTP请求:\n%s\n",httppack);
+  macESP8266_Usart( "%s", httppack);
   while(1)
 	{	
-		if(strUSART_Fram_Record .InfBit .FramFinishFlag == 1)  //如果接收到了串口调试助手的数据
-		{
-			strUSART_Fram_Record .Data_RX_BUF[strUSART_Fram_Record .InfBit .FramLength] = '\0';
-			Usart_SendString(macESP8266_USARTx ,strUSART_Fram_Record .Data_RX_BUF);      //数据从串口调试助手转发到ESP8266
-			strUSART_Fram_Record .InfBit .FramLength = 0;                                //接收数据长度置零
-			strUSART_Fram_Record .InfBit .FramFinishFlag = 0;                            //接收标志置零
-	  }
-		if(strEsp8266_Fram_Record .InfBit .FramFinishFlag)                             //如果接收到了ESP8266的数据
-		{                                                      
-			 strEsp8266_Fram_Record .Data_RX_BUF[strEsp8266_Fram_Record .InfBit .FramLength] = '\0';
-			 Usart_SendString(DEBUG_USART ,strEsp8266_Fram_Record .Data_RX_BUF);        //数据从ESP8266转发到串口调试助手
-			 strEsp8266_Fram_Record .InfBit .FramLength = 0;                             //接收数据长度置零
-			 strEsp8266_Fram_Record.InfBit.FramFinishFlag = 0;                           //接收标志置零
-		}
+		ESP8266_CheckRecvDataTest();
   }	
 
 }

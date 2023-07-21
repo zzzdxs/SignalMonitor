@@ -41,7 +41,7 @@ void ESP8266_StaTcpClient_Unvarnish_ConfigTest(void)
   */
 void ESP8266_CheckRecvDataTest(void)
 {
-  //uint8_t ucStatus;
+  uint8_t ucStatus;
   uint16_t i;
   
   /* 如果接收到了串口调试助手的数据 */
@@ -67,7 +67,6 @@ void ESP8266_CheckRecvDataTest(void)
     strEsp8266_Fram_Record .InfBit .FramLength = 0;                             //接收数据长度置零
     strEsp8266_Fram_Record.InfBit.FramFinishFlag = 0;                           //接收标志置零
   }
-  /*
   if ( ucTcpClosedFlag )                                             //检测是否失去连接
   {
     ESP8266_ExitUnvarnishSend ();                                    //退出透传模式
@@ -91,6 +90,6 @@ void ESP8266_CheckRecvDataTest(void)
  
   
     
-  } */
+  } 
 }
 

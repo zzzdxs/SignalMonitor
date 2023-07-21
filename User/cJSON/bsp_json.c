@@ -1,5 +1,7 @@
 #include "bsp_json.h"
 
+char httppack[1024];
+
 void JSONPack(float number)
 {
     static uint8_t ucTemp;
@@ -19,7 +21,8 @@ void JSONPack(float number)
     cJSON_AddItemToObject(usr,"数字信号",cJSON_CreateNumber(nnumber));
     data=cJSON_Print(usr);
     printf("发送json信息:\n %s",data);
-
+    printf("发送HTTP信息:\n");
+    HTTPPack(data,httppack);
     cJSON_Delete(usr);
     free(data);
 	data=NULL;

@@ -36,8 +36,9 @@
 .\output\stm32f4xx_it.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\output\stm32f4xx_it.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\output\stm32f4xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\output\stm32f4xx_it.o: ..\User\./esp8266/bsp_esp8266_tcp.h
 .\output\stm32f4xx_it.o: ..\User\./esp8266/bsp_esp8266.h
 .\output\stm32f4xx_it.o: ..\User\./common/common.h
 .\output\stm32f4xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\output\stm32f4xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\output\stm32f4xx_it.o: ..\User\./usart/bsp_debug_usart.h
+.\output\stm32f4xx_it.o: ..\User\./esp8266/../usart/bsp_debug_usart.h

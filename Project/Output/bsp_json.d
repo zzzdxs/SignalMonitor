@@ -38,4 +38,6 @@
 .\output\bsp_json.o: ..\User\cJSON\cJSON.h
 .\output\bsp_json.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\output\bsp_json.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\output\bsp_json.o: ..\User\cJSON\../usart/bsp_debug_usart.h
+.\output\bsp_json.o: ..\User\cJSON\../HTTP/bsp_HTTP.h
+.\output\bsp_json.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\output\bsp_json.o: ..\User\cJSON\../HTTP/../usart/bsp_debug_usart.h

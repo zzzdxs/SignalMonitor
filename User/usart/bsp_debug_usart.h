@@ -6,7 +6,7 @@
 
 
 
-//Òı½Å¶¨Òå
+//å¼•è„šå®šä¹‰
 /*******************************************************/
 #define DEBUG_USART                             USART1
 #define DEBUG_USART_CLK                         RCC_APB2Periph_USART1
@@ -26,7 +26,7 @@
 
 #define  DEBUG_USART_IRQ                USART1_IRQn
 #define  DEBUG_USART_IRQHandler         USART1_IRQHandler
-//´®¿Ú²¨ÌØÂÊ
+//ä¸²å£æ³¢ç‰¹ç‡
 #define DEBUG_USART_BAUDRATE                    115200
 
 

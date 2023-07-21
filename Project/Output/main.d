@@ -44,5 +44,7 @@
 .\output\main.o: ..\User\./cJSON/bsp_json.h
 .\output\main.o: ..\User\./cJSON/cJSON.h
 .\output\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\output\main.o: ..\User\./cJSON/../HTTP/bsp_HTTP.h
+.\output\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\output\main.o: ..\User\./led/bsp_led.h
 .\output\main.o: ..\User\./ADC/bsp_adc.h

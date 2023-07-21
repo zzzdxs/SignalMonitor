@@ -8,8 +8,8 @@
 #define      macUser_ESP8266_ApSsid                       "HBIS-WLAN"                //要连接的热点的名称
 #define      macUser_ESP8266_ApPwd                        "hbishbis"           //要连接的热点的密钥
 
-#define      macUser_ESP8266_TcpServer_IP                "172.168.112.71" //"172.168.112.88"  "192.168.0.45"     要连接的服务器的 IP
-#define      macUser_ESP8266_TcpServer_Port               "8000"               //要连接的服务器的端口
+#define      macUser_ESP8266_TcpServer_IP                "47.107.99.203" //"172.168.112.71"  "192.168.0.45"     要连接的服务器的 IP
+#define      macUser_ESP8266_TcpServer_Port               "8003"               //要连接的服务器的端口
 
 
 
